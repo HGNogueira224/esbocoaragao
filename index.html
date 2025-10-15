@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aragão Mídia - Fotografia Profissional</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #1b0f09;
+      color: white;
+      overflow-x: hidden;
+      font-size: 14px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ffa500;
+      margin: 10px 0;
+    }
+
+    /* ==== BANNER ==== */
+    .banner-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 45vh;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ==== PACKS ==== */
+    .packs-container {
+      display: flex;
+      overflow-x: hidden; /* sem barra visível */
+      scroll-behavior: smooth;
+      padding: 30px 0;
+      gap: 25px;
+      cursor: grab;
+      justify-content: flex-start;
+      user-select: none;
+    }
+
+    .pack {
+      flex: 0 0 auto;
+      background: linear-gradient(180deg, #3b2418, #1d1109);
+      border-radius: 15px;
+      padding: 10px;
+      width: 230px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .pack:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(255, 165, 0, 0.3);
+    }
+
+    .pack img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 10px;
+
+      -webkit-user-drag: none; /* Safari/Chrome */
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+
+      pointer-events: none; /* impede que a imagem capture o clique */
+    }
+
+    .pack h3 {
+      color: #ffa500;
+      font-size: 1.1em;
+      margin: 5px 0;
+      font-weight: 600;
+    }
+    .pack p {
+      font-size: 0.9em;
+      color: #ddd;
+      margin: 0 10px 10px;
+    }
+
+    /* ==== BOTÃO WHATSAPP ==== */
+    .btn-whatsapp {
+      display: block;
+      width: 70%;
+      margin: 25px auto;
+      background-color: #25d366;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    /* ==== DÚVIDAS ==== */
+    .duvidas {
+      background-color: #2b1c13;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 30px 10%;
+    }
+
+    .duvidas h2 {
+      color: #ffa500;
+      font-size: 1.2em;
+    }
+
+    .duvidas ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .duvidas li {
+      padding: 8px 0;
+      border-bottom: 1px solid #444;
+      font-size: 0.9em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #140a05;
+      color: #bbb;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #ffa500;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    /* ==== MOBILE ==== */
+    @media (max-width: 768px) {
+      .banner-img {
+        height: 40vh;
+      }
+
+      .pack {
+        width: 180px;
+      }
+
+      .duvidas {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="banner-container">
+    <img src="banner.jpg" alt="Banner Aragão Mídia" class="banner-img" />
+  </header>
+
+  <section>
+    <h1>“Num instante, você brilha!”</h1>
+    <h2>Conheça nossos principais pacotes:</h2>
+
+    <div class="packs-container" id="packs">
+      <div class="pack">
+        <img src="pack1.png" alt="Pack Aniversário" />
+        <h3>PACK ARAGÃO ANIVERSÁRIO</h3>
+      </div>
+      <div class="pack">
+        <img src="pack2.png" alt="Pack Casamento" />
+        <h3>PACK ARAGÃO CASAMENTO</h3>
+      </div>
+      <div class="pack">
+        <img src="pack3.png" alt="Pack Profissional" />
+        <h3>PACK ARAGÃO PROFISSIONAL</h3>
+      </div>
+      <div class="pack">
+        <img src="pack4.png" alt="Pack Estúdio" />
+        <h3>PACK ARAGÃO ESTÚDIO</h3>
+      </div>
+      <div class="pack">
+        <img src="pack5.png" alt="Pack Outdoor" />
+        <h3>PACK ARAGÃO OUTDOOR</h3>
+      </div>
+      <div class="pack">
+        <img src="pack6.png" alt="Pack Outdoor">
+        <h3>PACK ARAGÃO OUTDOOR</h3>
+      </div>
+      <div class="pack">
+        <img src="pack7.png" alt="Pack Outdoor">
+        <h3>PACK ARAGÃO OUTDOOR</h3>
+      </div>
+      <div class="pack">
+        <img src="pack8.png" alt="Pack Outdoor">
+        <h3>PACK ARAGÃO OUTDOOR</h3>
+      </div>
+      <div class="pack">
+        <img src="pack9.png" alt="Pack Outdoor">
+        <h3>PACK ARAGÃO OUTDOOR</h3>
+      </div>
+    </div>
+
+    <a class="btn-whatsapp" href="https://wa.me/5521999999999" target="_blank">
+      📸 Fazer Orçamento via WhatsApp
+    </a>
+  </section>
+
+  <section class="duvidas">
+    <h2>Dúvidas Frequentes</h2>
+    <ul>
+      <li>📷 Como as fotos são entregues?</li>
+      <li>📍 Vocês atendem fora de Japeri?</li>
+      <li>💳 Posso pagar parcelado?</li>
+      <li>💰 Vocês cobram caro?</li>
+    </ul>
+  </section>
+
+  <footer>
+    © 2025 Aragão Mídia | Desenvolvido por <strong>Hg Nogueira</strong><br />
+    <a href="https://www.instagram.com/seuinstagram" target="_blank">Instagram</a> |
+    <a href="https://wa.me/5521999999999" target="_blank">WhatsApp</a> |
+    <a href="mailto:seuemail@gmail.com">E-mail</a>
+  </footer>
+
+  <script>
+    const packsContainer = document.getElementById("packs");
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // PC (mouse)
+    packsContainer.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.pageX - packsContainer.offsetLeft;
+      scrollLeft = packsContainer.scrollLeft;
+    });
+
+    packsContainer.addEventListener("mouseleave", () => (isDown = false));
+    packsContainer.addEventListener("mouseup", () => (isDown = false));
+
+    packsContainer.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - packsContainer.offsetLeft;
+      const walk = (x - startX) * 2;
+      packsContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    // CELULAR (touch)
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+
+    packsContainer.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].pageX - packsContainer.offsetLeft;
+      touchScrollLeft = packsContainer.scrollLeft;
+    });
+
+    packsContainer.addEventListener("touchmove", (e) => {
+      const x = e.touches[0].pageX - packsContainer.offsetLeft;
+      const walk = (x - touchStartX) * 2;
+      packsContainer.scrollLeft = touchScrollLeft - walk;
+    });
+  </script>
+</body>
+</html>
