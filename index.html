@@ -4,41 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aragão Mídia - Fotografia Profissional</title>
+  <!-- Fonte moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: "Poppins", sans-serif;
+      font-family: "Montserrat", sans-serif;
       background-color: #1b0f09;
       color: white;
       overflow-x: hidden;
       font-size: 14px;
+      text-transform: uppercase; /* tudo em caixa alta */
+      letter-spacing: 0.5px; /* leve espaçamento entre letras */
     }
 
     h1, h2 {
       text-align: center;
       color: #ffa500;
       margin: 10px 0;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     /* ==== BANNER ==== */
     .banner-container {
       width: 100%;
+      height: 70vh;
+      max-height: 400px;
+      margin: 0 auto;
       overflow: hidden;
       position: relative;
+      background-color: black;
+      border-radius: 5px;
     }
 
-    .banner-img {
+    .banner-img,
+    .banner-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
       width: 100%;
-      height: 45vh;
+      height: 100%;
+      transform: translate(-50%, -50%);
       object-fit: cover;
       object-position: center;
-      display: block;
+      transition: opacity 1s ease;
+    }
+
+    .banner-video {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .banner-video.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Logotipo fixo sobre o vídeo */
+    .logo-banner {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 120px;
+      z-index: 2;
+      user-select: none;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
     }
 
     /* ==== PACKS ==== */
     .packs-container {
       display: flex;
-      overflow-x: hidden; /* sem barra visível */
+      overflow-x: hidden;
       scroll-behavior: smooth;
       padding: 30px 0;
       gap: 25px;
@@ -68,28 +106,18 @@
       border-radius: 12px;
       display: block;
       margin-bottom: 10px;
-
-      -webkit-user-drag: none; /* Safari/Chrome */
-      -khtml-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-
-      pointer-events: none; /* impede que a imagem capture o clique */
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .pack h3 {
       color: #ffa500;
-      font-size: 1.1em;
+      font-size: 1em;
       margin: 5px 0;
       font-weight: 600;
-    }
-    .pack p {
-      font-size: 0.9em;
-      color: #ddd;
-      margin: 0 10px 10px;
+      letter-spacing: 1px;
     }
 
-    /* ==== BOTÃO WHATSAPP ==== */
     .btn-whatsapp {
       display: block;
       width: 70%;
@@ -99,12 +127,12 @@
       text-align: center;
       padding: 14px;
       border-radius: 10px;
-      font-weight: bold;
+      font-weight: 700;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
+      letter-spacing: 1px;
     }
 
-    /* ==== DÚVIDAS ==== */
     .duvidas {
       background-color: #2b1c13;
       padding: 20px;
@@ -115,6 +143,7 @@
     .duvidas h2 {
       color: #ffa500;
       font-size: 1.2em;
+      letter-spacing: 1px;
     }
 
     .duvidas ul {
@@ -125,7 +154,8 @@
     .duvidas li {
       padding: 8px 0;
       border-bottom: 1px solid #444;
-      font-size: 0.9em;
+      font-size: 0.85em;
+      letter-spacing: 0.5px;
     }
 
     footer {
@@ -133,7 +163,8 @@
       padding: 15px;
       background-color: #140a05;
       color: #bbb;
-      font-size: 13px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
     }
 
     footer a {
@@ -142,16 +173,18 @@
       text-decoration: none;
     }
 
-    /* ==== MOBILE ==== */
     @media (max-width: 768px) {
-      .banner-img {
-        height: 40vh;
+      .banner-container {
+        height: 30vh;
       }
-
+      .logo-banner {
+        width: 80px;
+        top: 10px;
+        left: 10px;
+      }
       .pack {
         width: 180px;
       }
-
       .duvidas {
         margin: 20px;
       }
@@ -160,49 +193,33 @@
 </head>
 <body>
   <header class="banner-container">
-    <img src="banner.jpg" alt="Banner Aragão Mídia" class="banner-img" />
+    <!-- Logotipo fixo -->
+    <img src="logo.png" alt="Logo Aragão Mídia" class="logo-banner" />
+
+    <!-- Banner inicial -->
+    <img src="banner.jpg" alt="Banner Aragão Mídia" class="banner-img" id="bannerImg">
+
+    <!-- Vídeo MP4 (inicialmente oculto) -->
+    <video
+      id="bannerVideo"
+      class="banner-video"
+      src="video.mp4"
+      muted
+      playsinline
+    ></video>
   </header>
 
   <section>
-    <h1>Nossos melhores pacotes:</h1>
+    <h1>Conheça nossos principais pacotes:</h1>
 
     <div class="packs-container" id="packs">
-      <div class="pack">
-        <img src="pack1.png" alt="Pack Aniversário" />
-        <h3>PACK ARAGÃO ANIVERSÁRIO</h3>
-      </div>
-      <div class="pack">
-        <img src="pack2.png" alt="Pack Casamento" />
-        <h3>PACK ARAGÃO CASAMENTO</h3>
-      </div>
-      <div class="pack">
-        <img src="pack3.png" alt="Pack Profissional" />
-        <h3>PACK ARAGÃO PROFISSIONAL</h3>
-      </div>
-      <div class="pack">
-        <img src="pack4.png" alt="Pack Estúdio" />
-        <h3>PACK ARAGÃO ESTÚDIO</h3>
-      </div>
-      <div class="pack">
-        <img src="pack5.png" alt="Pack Outdoor" />
-        <h3>PACK ARAGÃO OUTDOOR</h3>
-      </div>
-      <div class="pack">
-        <img src="pack6.png" alt="Pack Outdoor">
-        <h3>PACK ARAGÃO OUTDOOR</h3>
-      </div>
-      <div class="pack">
-        <img src="pack7.png" alt="Pack Outdoor">
-        <h3>PACK ARAGÃO OUTDOOR</h3>
-      </div>
-      <div class="pack">
-        <img src="pack8.png" alt="Pack Outdoor">
-        <h3>PACK ARAGÃO OUTDOOR</h3>
-      </div>
-      <div class="pack">
-        <img src="pack9.png" alt="Pack Outdoor">
-        <h3>PACK ARAGÃO OUTDOOR</h3>
-      </div>
+      <div class="pack"><img src="pack1.png" alt="Pack Aniversário" /><h3>PACK ARAGÃO ANIVERSÁRIO</h3></div>
+      <div class="pack"><img src="pack2.png" alt="Pack Casamento" /><h3>PACK ARAGÃO CASAMENTO</h3></div>
+      <div class="pack"><img src="pack3.png" alt="Pack Profissional" /><h3>PACK ARAGÃO PROFISSIONAL</h3></div>
+      <div class="pack"><img src="pack4.png" alt="Pack Estúdio" /><h3>PACK ARAGÃO ESTÚDIO</h3></div>
+      <div class="pack"><img src="pack5.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
+      <div class="pack"><img src="pack6.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
+      <div class="pack"><img src="pack7.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
     </div>
 
     <a class="btn-whatsapp" href="https://wa.me/5521999999999" target="_blank">
@@ -222,27 +239,25 @@
 
   <footer>
     © 2025 Aragão Mídia | Desenvolvido por <strong>Hg Nogueira</strong><br />
-    <a href="https://www.instagram.com" target="_blank">Instagram</a> |
-    <a href="https://wa.me/55" target="_blank">WhatsApp</a> |
+    <a href="https://www.instagram.com/seuinstagram" target="_blank">Instagram</a> |
+    <a href="https://wa.me/5521999999999" target="_blank">WhatsApp</a> |
     <a href="mailto:seuemail@gmail.com">E-mail</a>
   </footer>
 
   <script>
+    // Scroll lateral com mouse e toque
     const packsContainer = document.getElementById("packs");
     let isDown = false;
     let startX;
     let scrollLeft;
 
-    // PC (mouse)
     packsContainer.addEventListener("mousedown", (e) => {
       isDown = true;
       startX = e.pageX - packsContainer.offsetLeft;
       scrollLeft = packsContainer.scrollLeft;
     });
-
     packsContainer.addEventListener("mouseleave", () => (isDown = false));
     packsContainer.addEventListener("mouseup", () => (isDown = false));
-
     packsContainer.addEventListener("mousemove", (e) => {
       if (!isDown) return;
       e.preventDefault();
@@ -251,22 +266,37 @@
       packsContainer.scrollLeft = scrollLeft - walk;
     });
 
-    // CELULAR (touch)
+    // Mobile (touch)
     let touchStartX = 0;
     let touchScrollLeft = 0;
-
     packsContainer.addEventListener("touchstart", (e) => {
       touchStartX = e.touches[0].pageX - packsContainer.offsetLeft;
       touchScrollLeft = packsContainer.scrollLeft;
     });
-
     packsContainer.addEventListener("touchmove", (e) => {
       const x = e.touches[0].pageX - packsContainer.offsetLeft;
       const walk = (x - touchStartX) * 2;
       packsContainer.scrollLeft = touchScrollLeft - walk;
     });
+
+    // ==== TRANSIÇÃO DO BANNER PARA O VÍDEO ====
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const bannerImg = document.getElementById("bannerImg");
+        const bannerVideo = document.getElementById("bannerVideo");
+
+        bannerImg.style.opacity = "0";
+        bannerVideo.classList.add("active");
+
+        bannerVideo.play();
+
+        // bloqueia interação
+        bannerVideo.addEventListener("contextmenu", e => e.preventDefault());
+        bannerVideo.addEventListener("click", e => e.preventDefault());
+        bannerVideo.addEventListener("pause", () => bannerVideo.play());
+        window.addEventListener("keydown", e => e.preventDefault());
+      }, 5000); // troca após 5s
+    });
   </script>
 </body>
 </html>
-
-
