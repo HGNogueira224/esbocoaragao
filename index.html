@@ -65,14 +65,18 @@
 
         /* ==== TARJA ABAIXO DO BANNER ==== */
     .tarja-titulo {
-      background-color: #FFE0A7; /* bege semelhante à imagem */
-      color: #25130F; /* marrom escuro do texto */
+      position: absolute;      /* posicionamento absoluto */
+      bottom: 0;               /* colada na parte inferior do banner */
+      left: 0;
+      width: 100%;             /* cobre toda a largura do banner */
+      background-color: #FFE0A7;
+      color: #25130F;
       text-align: center;
       font-weight: 700;
-      font-size: 16px;
-      letter-spacing: 0px;
-      padding: 1px 0;
-      margin: 0; /* cola no banner */
+      font-size: 14px;         /* ajuste fino da fonte */
+      line-height: 1;          /* compacta a altura da linha */
+      padding: 0;              /* sem padding extra */
+      margin: 0;               /* sem margem */
       text-transform: uppercase;
     }
 
@@ -207,6 +211,11 @@
       .duvidas {
         margin: 20px;
       }
+      .tarja-titulo {
+        font-size: 11px; /* menor ainda que antes */
+        padding: 0px 0;
+        line-height: 1; 
+      }
     }
   </style>
 </head>
@@ -223,13 +232,13 @@
       muted
       playsinline
     ></video>
+    <!-- tarja colada ao banner -->
+    <div class="tarja-titulo">
+      CONHEÇA NOSSOS PRINCIPAIS PACOTES ABAIXO:
+    </div>
   </header>
 
 <section>
-  <div class="tarja-titulo">
-    <p>Conheça nossos principais pacotes abaixo:</p>
-  </div>
-
   <div class="packs-container" id="packs">
     <div class="pack" data-msg='Olá!😀 Quero saber sobre os "ENSAIOS DE ANIVERSÁRIO"📷'>
       <img src="1.jpg" alt="Pack Aniversário" />
