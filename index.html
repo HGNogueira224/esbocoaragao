@@ -161,6 +161,14 @@
       .banner-container {
         height: 22vh;
       }
+       body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* ocupa toda a altura da tela */
+      }
+      body > *:not(footer) {
+        flex: 1;
+      }
       .pack {
         width: 180px;
       }
