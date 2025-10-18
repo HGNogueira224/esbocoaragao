@@ -142,51 +142,6 @@
       font-size: 10px;
       letter-spacing: 1px;
     }
-
-    .duvidas {
-      background-color: #2b1c13;
-      padding: 20px;
-      border-radius: 20px;
-      margin: 30px 10%;
-      border: 2px solid white; /* linha branca em volta */
-    }
-
-    .duvidas h2 {
-      color: white;
-      font-size: 1.2em;
-      letter-spacing: 1px;
-    }
-
-    .duvidas ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .duvidas li {
-      padding: 8px 0;
-      color: #E5984F;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      font-size: 0.65em;
-      letter-spacing: 0.5px;
-    }
-
-    .duvida-item {
-      cursor: pointer;
-      position: relative;
-    }
-    .duvida-item .resposta {
-      display: none;
-      font-weight: 500;
-      font-size: 6px;
-      padding: 8px 0 8px 20px;
-      color: #fff;
-      font-size: 0.85em;
-    }
-    .duvida-item.active .resposta {
-      display: block;
-    }
-
     footer {
       text-align: center;
       padding: 15px;
@@ -208,9 +163,6 @@
       }
       .pack {
         width: 180px;
-      }
-      .duvidas {
-        margin: 20px;
       }
       .tarja-titulo {
         font-size: 11px; /* menor ainda que antes */
@@ -282,33 +234,17 @@
   </a>
 </section>
 
-<section class="duvidas">
-  <h2>Dúvidas Frequentes</h2>
-  <ul>
-    <li class="duvida-item">
-      📷 Como as fotos são entregues?
-      <p class="resposta">As fotos são entregues em alta resolução via link para download, geralmente em até 5 dias após a sessão.</p>
-    </li>
-    <li class="duvida-item">
-      📍 Vocês atendem fora de Japeri?
-      <p class="resposta">Sim! Podemos atender outras cidades com taxa de deslocamento adicional, dependendo da distância.</p>
-    </li>
-    <li class="duvida-item">
-      💳 Posso pagar parcelado?
-      <p class="resposta">Sim, oferecemos parcelamento em até 3x sem juros no cartão de crédito.</p>
-    </li>
-    <li class="duvida-item">
-      💰 Vocês cobram caro?
-      <p class="resposta">Nossos preços são justos pelo serviço profissional e qualidade das fotos entregues.</p>
-    </li>
-  </ul>
+<section class="instagram" style="text-align: center; margin: 30px 0;">
+  <a href="https://www.instagram.com/aragao_midia/?__pwa=1#" target="_blank"
+     style="display: inline-flex; align-items: center; gap: 0px; text-decoration: none; color: #E5984F; font-weight: 700; font-size: 0.8em; text-transform: lowercase;">
+    <img src="insta.png" alt="Instagram" style="width: 30px; height: 30px;">
+    <span>@aragao_midia</span>
+  </a>
 </section>
 
   <footer>
-    © 2025 Aragão Mídia | Desenvolvido por <strong>Hg Nogueira</strong><br />
-    <a href="https://www.instagram.com/seuinstagram" target="_blank">Instagram</a> |
-    <a href="https://wa.me/5521966322539" target="_blank">WhatsApp</a> |
-    <a href="mailto:seuemail@gmail.com">E-mail</a>
+    © 2025 Aragão Mídia | CNPJ:<strong>63.252.925/0001-40</strong><br />
+    <a href="mailto:aragãomidia25@gmail.com">aragãomidia25@gmail.com</a>
   </footer>
 
   <script>
@@ -367,7 +303,7 @@
         bannerVideo.addEventListener("click", e => e.preventDefault());
         bannerVideo.addEventListener("pause", () => bannerVideo.play());
         window.addEventListener("keydown", e => e.preventDefault());
-      }, 5000);
+      }, 2000);
     });
 
     // ==== LINKS WHATSAPP ====
@@ -381,14 +317,6 @@
         const msg = pack.getAttribute("data-msg");
         const link = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
         window.open(link, "_blank");
-      });
-    });
-
-    // Toggle para dúvidas
-    const duvidas = document.querySelectorAll(".duvida-item");
-    duvidas.forEach(item => {
-      item.addEventListener("click", () => {
-        item.classList.toggle("active");
       });
     });
   </script>
