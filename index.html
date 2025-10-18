@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aragão Mídia - Fotografia Profissional</title>
   <!-- Fonte moderna -->
@@ -10,7 +11,7 @@
     body {
       margin: 0;
       font-family: "Montserrat", sans-serif;
-      background-color: #1b0f09;
+      background-color: #25130F;
       color: white;
       overflow-x: hidden;
       font-size: 20px;
@@ -20,7 +21,7 @@
 
     h1, h2 {
       text-align: center;
-      color: #ffa500;
+      color: #E5984F;
       margin: 15px 0;
       font-weight: 700;
       font-size: 16px;
@@ -62,68 +63,71 @@
       pointer-events: all;
     }
 
-    /* Logotipo fixo sobre o vídeo */
-    .logo-banner {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 120px;
-      z-index: 2;
-      user-select: none;
-      pointer-events: none;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+        /* ==== TARJA ABAIXO DO BANNER ==== */
+    .tarja-titulo {
+      background-color: #FFE0A7; /* bege semelhante à imagem */
+      color: #25130F; /* marrom escuro do texto */
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0px;
+      padding: 1px 0;
+      margin: 0; /* cola no banner */
+      text-transform: uppercase;
     }
 
     /* ==== PACKS ==== */
     .packs-container {
       display: flex;
-      overflow-x: hidden;
+      overflow-x: hidden; /* sem scroll */
       scroll-behavior: smooth;
       padding: 30px 0;
       gap: 25px;
       cursor: grab;
       justify-content: flex-start;
       user-select: none;
+      padding-left: 20px;
     }
 
     .pack {
       flex: 0 0 auto;
-      background: linear-gradient(180deg, #3b2418, #1d1109);
-      border-radius: 15px;
-      padding: 10px;
+      background: none; /* sem fundo */
+      border-radius: 0;
+      padding: 0;
       width: 230px;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+      box-shadow: none;
+    }
+
+    /* Mostra um pedacinho do próximo pack */
+    .packs-container::after {
+      content: "";
+      flex: 0 0 60px; /* espaço para ver parte do próximo pack */
     }
 
     .pack:hover {
       transform: scale(1.07);
-      box-shadow: 0 6px 20px rgba(255, 165, 0, 0.3);
     }
 
     .pack img {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 15px;
       display: block;
-      margin-bottom: 10px;
       -webkit-user-drag: none;
       pointer-events: none;
     }
 
+    /* Esconde o texto */
     .pack h3 {
-      color: #ffa500;
-      font-size: 1em;
-      margin: 5px 0;
-      font-weight: 600;
-      letter-spacing: 1px;
+      display: none;
     }
 
     .btn-whatsapp {
       display: block;
       width: 70%;
       margin: 25px auto;
-      background-color: #25d366;
+      background-color: #00A201;
       color: white;
       text-align: center;
       padding: 14px;
@@ -137,12 +141,13 @@
     .duvidas {
       background-color: #2b1c13;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 20px;
       margin: 30px 10%;
+      border: 2px solid white; /* linha branca em volta */
     }
 
     .duvidas h2 {
-      color: #ffa500;
+      color: white;
       font-size: 1.2em;
       letter-spacing: 1px;
     }
@@ -154,9 +159,27 @@
 
     .duvidas li {
       padding: 8px 0;
-      border-bottom: 1px solid #444;
-      font-size: 0.85em;
+      color: #E5984F;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      font-size: 0.65em;
       letter-spacing: 0.5px;
+    }
+
+    .duvida-item {
+      cursor: pointer;
+      position: relative;
+    }
+    .duvida-item .resposta {
+      display: none;
+      font-weight: 500;
+      font-size: 6px;
+      padding: 8px 0 8px 20px;
+      color: #fff;
+      font-size: 0.85em;
+    }
+    .duvida-item.active .resposta {
+      display: block;
     }
 
     footer {
@@ -178,11 +201,6 @@
       .banner-container {
         height: 25vh;
       }
-      .logo-banner {
-        width: 80px;
-        top: 10px;
-        left: 10px;
-      }
       .pack {
         width: 180px;
       }
@@ -194,9 +212,6 @@
 </head>
 <body>
   <header class="banner-container">
-    <!-- Logotipo fixo -->
-    <img src="logo.png" alt="Logo Aragão Mídia" class="logo-banner" />
-
     <!-- Banner inicial -->
     <img src="banner.jpg" alt="Banner Aragão Mídia" class="banner-img" id="bannerImg">
 
@@ -210,38 +225,79 @@
     ></video>
   </header>
 
-  <section>
-    <h1>Conheça nossos principais pacotes:</h1>
+<section>
+  <div class="tarja-titulo">
+    <p>Conheça nossos principais pacotes abaixo:</p>
+  </div>
 
-    <div class="packs-container" id="packs">
-      <div class="pack"><img src="pack1.png" alt="Pack Aniversário" /><h3>PACK ARAGÃO ANIVERSÁRIO</h3></div>
-      <div class="pack"><img src="pack2.png" alt="Pack Casamento" /><h3>PACK ARAGÃO CASAMENTO</h3></div>
-      <div class="pack"><img src="pack3.png" alt="Pack Profissional" /><h3>PACK ARAGÃO PROFISSIONAL</h3></div>
-      <div class="pack"><img src="pack4.png" alt="Pack Estúdio" /><h3>PACK ARAGÃO ESTÚDIO</h3></div>
-      <div class="pack"><img src="pack5.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
-      <div class="pack"><img src="pack6.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
-      <div class="pack"><img src="pack7.png" alt="Pack Outdoor" /><h3>PACK ARAGÃO OUTDOOR</h3></div>
+  <div class="packs-container" id="packs">
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre os "ENSAIOS DE ANIVERSÁRIO"📷'>
+      <img src="1.jpg" alt="Pack Aniversário" />
+      <h3>PACK ARAGÃO ANIVERSÁRIO</h3>
     </div>
 
-    <a class="btn-whatsapp" href="https://wa.me/5521999999999" target="_blank">
-      📸 Fazer Orçamento via WhatsApp
-    </a>
-  </section>
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre os serviços de "CASAMENTO"👰🏽‍♀️📷'>
+      <img src="2.jpg" alt="Pack Casamento" />
+      <h3>PACK ARAGÃO CASAMENTO</h3>
+    </div>
 
-  <section class="duvidas">
-    <h2>Dúvidas Frequentes</h2>
-    <ul>
-      <li>📷 Como as fotos são entregues?</li>
-      <li>📍 Vocês atendem fora de Japeri?</li>
-      <li>💳 Posso pagar parcelado?</li>
-      <li>💰 Vocês cobram caro?</li>
-    </ul>
-  </section>
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre os serviços de "FESTA DE 15 ANOS"💅🏽📷'>
+      <img src="3.jpg" alt="Pack Festa 15 anos" />
+      <h3>PACK ARAGÃO FESTA 15 ANOS</h3>
+    </div>
+
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre as "FOTOS TEMÁTICAS PROFISSIONAL"🥼📷'>
+      <img src="4.jpg" alt="Pack Foto Profissional" />
+      <h3>PACK ARAGÃO FOTO PROFISSIONAL</h3>
+    </div>
+
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre as "FOTOS CASUAIS"🤵🏼‍♀️📷'>
+      <img src="5.jpg" alt="Pack Foto Casual" />
+      <h3>PACK ARAGÃO FOTO CASUAL</h3>
+    </div>
+
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre os serviços de "FESTA INFANTIL"👶🏻📷'>
+      <img src="6.jpg" alt="Pack Festa Infantil" />
+      <h3>PACK ARAGÃO FESTA INFANTIL</h3>
+    </div>
+
+    <div class="pack" data-msg='Olá!😀 Quero saber sobre as "FOTOS DE FORMATURA"👩🏽‍🎓📷'>
+      <img src="7.jpg" alt="Pack Formatura" />
+      <h3>PACK ARAGÃO FORMATURA</h3>
+    </div>
+  </div>
+
+  <a class="btn-whatsapp" href="https://wa.me/5521966322539" target="_blank">
+    📸 Fazer Orçamento via WhatsApp
+  </a>
+</section>
+
+<section class="duvidas">
+  <h2>Dúvidas Frequentes</h2>
+  <ul>
+    <li class="duvida-item">
+      📷 Como as fotos são entregues?
+      <p class="resposta">As fotos são entregues em alta resolução via link para download, geralmente em até 5 dias após a sessão.</p>
+    </li>
+    <li class="duvida-item">
+      📍 Vocês atendem fora de Japeri?
+      <p class="resposta">Sim! Podemos atender outras cidades com taxa de deslocamento adicional, dependendo da distância.</p>
+    </li>
+    <li class="duvida-item">
+      💳 Posso pagar parcelado?
+      <p class="resposta">Sim, oferecemos parcelamento em até 3x sem juros no cartão de crédito.</p>
+    </li>
+    <li class="duvida-item">
+      💰 Vocês cobram caro?
+      <p class="resposta">Nossos preços são justos pelo serviço profissional e qualidade das fotos entregues.</p>
+    </li>
+  </ul>
+</section>
 
   <footer>
     © 2025 Aragão Mídia | Desenvolvido por <strong>Hg Nogueira</strong><br />
     <a href="https://www.instagram.com/seuinstagram" target="_blank">Instagram</a> |
-    <a href="https://wa.me/5521999999999" target="_blank">WhatsApp</a> |
+    <a href="https://wa.me/5521966322539" target="_blank">WhatsApp</a> |
     <a href="mailto:seuemail@gmail.com">E-mail</a>
   </footer>
 
@@ -251,12 +307,15 @@
     let isDown = false;
     let startX;
     let scrollLeft;
+    let moved = false; // detecta se foi arrastado
 
     packsContainer.addEventListener("mousedown", (e) => {
       isDown = true;
       startX = e.pageX - packsContainer.offsetLeft;
       scrollLeft = packsContainer.scrollLeft;
+      moved = false;
     });
+
     packsContainer.addEventListener("mouseleave", () => (isDown = false));
     packsContainer.addEventListener("mouseup", () => (isDown = false));
     packsContainer.addEventListener("mousemove", (e) => {
@@ -264,6 +323,7 @@
       e.preventDefault();
       const x = e.pageX - packsContainer.offsetLeft;
       const walk = (x - startX) * 2;
+      if (Math.abs(walk) > 10) moved = true; // só considera arraste real
       packsContainer.scrollLeft = scrollLeft - walk;
     });
 
@@ -273,10 +333,12 @@
     packsContainer.addEventListener("touchstart", (e) => {
       touchStartX = e.touches[0].pageX - packsContainer.offsetLeft;
       touchScrollLeft = packsContainer.scrollLeft;
+      moved = false;
     });
     packsContainer.addEventListener("touchmove", (e) => {
       const x = e.touches[0].pageX - packsContainer.offsetLeft;
       const walk = (x - touchStartX) * 2;
+      if (Math.abs(walk) > 10) moved = true;
       packsContainer.scrollLeft = touchScrollLeft - walk;
     });
 
@@ -288,7 +350,6 @@
 
         bannerImg.style.opacity = "0";
         bannerVideo.classList.add("active");
-
         bannerVideo.play();
 
         // bloqueia interação
@@ -296,7 +357,29 @@
         bannerVideo.addEventListener("click", e => e.preventDefault());
         bannerVideo.addEventListener("pause", () => bannerVideo.play());
         window.addEventListener("keydown", e => e.preventDefault());
-      }, 5000); // troca após 5s
+      }, 5000);
+    });
+
+    // ==== LINKS WHATSAPP ====
+    const phoneNumber = "5521966322539"; // seu número sem +
+
+    const packs = document.querySelectorAll(".pack");
+
+    packs.forEach((pack) => {
+      pack.addEventListener("click", () => {
+        if (moved) return; // ignora se foi arrastado
+        const msg = pack.getAttribute("data-msg");
+        const link = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+        window.open(link, "_blank");
+      });
+    });
+
+    // Toggle para dúvidas
+    const duvidas = document.querySelectorAll(".duvida-item");
+    duvidas.forEach(item => {
+      item.addEventListener("click", () => {
+        item.classList.toggle("active");
+      });
     });
   </script>
 </body>
