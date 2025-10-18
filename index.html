@@ -9,15 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
+      display: flex;
+      flex-direction: column;
       font-family: "Montserrat", sans-serif;
       background-color: #25130F;
       color: white;
       overflow-x: hidden;
       font-size: 20px;
       text-transform: uppercase; /* tudo em caixa alta */
-      letter-spacing: 0.5px; /* leve espaçamento entre letras */
+      letter-spacing: 0.5px;
+    }
+
+    body > *:not(footer) {
+      flex: 1; /* todo o conteúdo acima do footer ocupa o espaço disponível */
+    }
+
+    footer {
+      flex-shrink: 0; /* impede que o footer encolha e garante que fique no final */
     }
 
     h1, h2 {
@@ -32,8 +43,9 @@
     /* ==== BANNER ==== */
     .banner-container {
       width: 100%;
-      aspect-ratio: 1080 / 608; /* Mantém a proporção base do banner */
+      aspect-ratio: 1080 / 608; /* mantém proporção base */
       max-height: 500px;
+      min-height: 200px; /* altura mínima em celular */
       margin: 0 auto;
       overflow: hidden;
       position: relative;
@@ -96,13 +108,48 @@
 
     .pack {
       flex: 0 0 auto;
-      background: none; /* sem fundo */
-      border-radius: 0;
-      padding: 0;
-      width: 230px;
-      text-align: center;
-      transition: transform 0.3s;
-      box-shadow: none;
+      width: 180px; /* menor no celular */
+      opacity: 0;
+      transform: translateX(-30px); /* deslocamento inicial menor para celular */
+      animation: slideFadeIn 0.6s forwards;
+    }
+
+    /* delay progressivo para todos os packs */
+    .packs-container .pack:nth-child(1) { animation-delay: 0.1s; }
+    .packs-container .pack:nth-child(2) { animation-delay: 0.2s; }
+    .packs-container .pack:nth-child(3) { animation-delay: 0.3s; }
+    .packs-container .pack:nth-child(4) { animation-delay: 0.4s; }
+    .packs-container .pack:nth-child(5) { animation-delay: 0.5s; }
+    .packs-container .pack:nth-child(6) { animation-delay: 0.6s; }
+    .packs-container .pack:nth-child(7) { animation-delay: 0.7s; }
+
+    @keyframes slideFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Animação pulsante para o primeiro pack */
+    @keyframes pulsePack {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255,255,255,0.5);
+      }
+    }
+
+    /* Aplica somente ao primeiro pack */
+    .packs-container .pack:first-child {
+      animation: slideFadeIn 0.8s forwards, pulsePack 1.5s infinite;
+      border-radius: 20px; /* borda arredondada do container */
     }
 
     /* Mostra um pedacinho do próximo pack */
@@ -128,6 +175,7 @@
       display: none;
     }
 
+    /* === ANIMAÇÃO DO BOTÃO WHATSAPP === */
     .btn-whatsapp {
       display: block;
       width: 70%;
@@ -141,7 +189,21 @@
       text-decoration: none;
       font-size: 10px;
       letter-spacing: 1px;
+      
+      /* sombra pulsante */
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      animation: pulseShadow 1.5s infinite;
     }
+
+    @keyframes pulseShadow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.1);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.2);
+      }
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -159,24 +221,28 @@
 
     @media (max-width: 768px) {
       .banner-container {
-        height: 22vh;
-      }
-       body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* ocupa toda a altura da tela */
-      }
-      body > *:not(footer) {
-        flex: 1;
-      }
-      .pack {
-        width: 180px;
+        height: 22vh; /* altura relativa à tela */
+        min-height: 150px; /* nunca menor que 180px */
+        max-height: 200px; /* não cresce demais */
       }
       .tarja-titulo {
         font-size: 11px; /* menor ainda que antes */
         padding: 0px 0;
         line-height: 1; 
       }
+      .pack {
+        width: 160px; 
+        animation: slideFadeIn 0.6s forwards;
+      }
+
+      /* delay progressivo maior para não cortar */
+      .pack:nth-child(1) { animation-delay: 0.1s; }
+      .pack:nth-child(2) { animation-delay: 0.3s; }
+      .pack:nth-child(3) { animation-delay: 0.5s; }
+      .pack:nth-child(4) { animation-delay: 0.7s; }
+      .pack:nth-child(5) { animation-delay: 0.9s; }
+      .pack:nth-child(6) { animation-delay: 1.1s; }
+      .pack:nth-child(7) { animation-delay: 1.3s; }
     }
   </style>
 </head>
